@@ -1,0 +1,78 @@
+: Configure R1
+enable
+configure terminal
+hostname R1
+no ip domain lookup
+ip dhcp excluded-address 192.168.10.1 192.168.10.9
+ip dhcp excluded-address 192.168.10.201 192.168.10.202
+
+ip dhcp pool Students
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+domain-name secure.com
+!
+interface Loopback0
+ip address 10.10.1.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1
+description Link to S1 Port 5
+ip dhcp relay information trusted
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+!
+line con 0
+logging synchronous
+exec-timeout 0 0
+
+
+: Configure and verify basic switch settings
+config t
+hostname s1
+no ip domain-lookup
+ip default-gateway 192.168.10.1
+
+: Configure VLANs on Switches
+vlan 10
+name managment
+
+Configure the SVI for VLAN 10.
+interface vlan10
+ip address 192.168.10.201 255.255.255.0
+no  shutdown 
+
+
+
+
+
+
+R1(config)# license boot module c2900 technology-package securityk9
+R1(config)# end
+R1# copy running-config startup-config
+R1# reload
+
+access-list 110 permit ip 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255
+
+
+R1(config)# crypto isakmp policy 10
+R1(config-isakmp)# encryption aes
+R1(config-isakmp)# authentication pre-share
+R1(config-isakmp)# group 2
+R1(config-isakmp)# exit
+R1(config)# crypto isakmp key cisco address 10.2.2.2
+
+R1(config)# crypto ipsec transform-set VPN-SET esp-3des esp-sha-hmac
+R1(config)# crypto map VPN-MAP 10 ipsec-isakmp
+R1(config-crypto-map)# description VPN connection to R3
+R1(config-crypto-map)# set peer 10.2.2.2
+R1(config-crypto-map)# set transform-set VPN-SET
+R1(config-crypto-map)# match address 110
+R1(config-crypto-map)# exit
+
+
+R1(config)# interface S0/0/0
+R1(config-if)# crypto map VPN-MAP
+show crypto ipsec sa
+
+
+
+

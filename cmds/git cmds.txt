@@ -1,0 +1,113 @@
+git config --global user.email manassehmwangi9@gmail.com 
+
+git config --global user.name ManassehMwangi
+
+
+git clone https://github.com/nVisium/django.nV.git
+
+ls 
+
+cd django.mv
+
+ls 
+
+git remote add origin https://github.com/ManasseMwangi/devsecops.git
+
+git remote remove origin
+
+git remote add origin https://github.com/ManasseMwangi/devsecops.git
+
+
+
+git status
+
+git checkout -b main
+
+git push -u origin main 
+            enter name and password"token"
+
+
+
+     linux machine
+sudo apt get install python3-pip 
+pip3 --version
+pip3 insatll safety
+
+
+export PATH=/home/snrmasara/.local/bin:$PATH
+
+safety check   
+/////// This tool is used to check for 3rd party software vunerabilities
+"CVE" found in the vulnerabilities
+
+https://github.com/S2FrdQ/Cybershujaa_Django/
+go to github workflows nad fork
+
+
+go to main.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mkdir -p .github/workflows
+cat >.github/workflows/main.yaml<<EOF
+name: DjangonvApp # workflow name
+on:
+push:
+   branches:
+     - main
+jobs:
+build:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "This is a build step"  
+
+
+
+test:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "This is a test step"
+
+
+
+integration:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "This is an integration step"
+     - run: exit 1
+
+
+
+prod:
+   runs-on: ubuntu-latest
+   steps:
+- run: echo "This is a deploy step"
+EOF
+
+
+
+Let’s add this file to the repository and commit the changes.
+git add .github/workflows/main.yaml
+git commit -m "Add Demo github workflows"
+
+
+
+4.    Push the changes to the repository git push origin main
+
+
+
+
+
+
+

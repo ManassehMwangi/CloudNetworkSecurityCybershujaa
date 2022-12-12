@@ -1,0 +1,79 @@
+Switch>
+arp -d clear the ARP table
+show mac-address-table >to see the mac address on the address table 
+
+arp -a comp cli >to get the IP address of the new ARP table entry
+
+https://subnetipv4.com/
+
+
+
+              Configuring a router #####
+enable 
+config terminal
+hostname R1
+no ip domain lookup >to disable DNS lookup to prevent routers from attempting to translate incorrectly
+enable secret class
+
+line console 0 >to assign password 
+passwword cisco
+login
+
+line vty 0 4
+password cisco 
+login 
+
+service password-encryption> encrypt plaintext passwords
+banner motd $ Authorized users only! $ >create a banner
+
+>configuring interfaces
+interface g0/0/0
+ip address 192.168.0.1 255.255.255.0
+ipv6 address 2001:db8:acad::1/64
+ipv6 address FE80::1 link-local >this is one is included when putting an ipv6 address
+no shutdown 
+exit
+
+>configuring interfae description
+interface g0/0/0
+description connected to f0/5 on s1
+
+ipv6 unicast-routing > enable ipv6 routing
+
+         >Save the running configuration
+copy running-config startup-config
+
+show ip route >display the routing table on a router
+show ipv6 route
+show ip interface g0/0/1 >display interface information
+
+show ip interface brief >a summary list of interfaces on both routers and switches
+show ipv6 interface brief
+
+         Configuring a switch #####
+enable
+config terminal
+hostname S1
+no ip domain-lookup
+
+>configure and activate Vlan intetrface on s1
+interface vlan 1
+ip address 192.168.1.2 255.255.255.0
+no shutdown 
+exit
+
+ip default-gateway 192.168.1.1
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+

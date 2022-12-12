@@ -1,0 +1,3 @@
+https://owasp.org/www-pdf-archive/Cloud-Top10-Security-Risks.pdf
+
+https://owasp.org/www-project-cloud-native-application-security-top-10/

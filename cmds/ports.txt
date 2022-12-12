@@ -1,0 +1,20 @@
+20 data FTP     TCP
+21 control FTP  TCP
+22 SSH          TCP
+23 Telnet       TCP
+25 SMTP         TCP
+53 DNS          UDP,TCP
+67 server DHCP    UDP
+68 client DHCP    UDP
+80 HTTP           TCP
+443 HTTPS         TCP
+
+
+
+
+
+
+8080 used for webservers to frive traffic
+3389 remote desktop connection
+4625 failed logins
+4776 a system guessing password
